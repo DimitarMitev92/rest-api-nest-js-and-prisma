@@ -14,12 +14,12 @@ const prisma_module_1 = require("./prisma/prisma.module");
 const articles_module_1 = require("./articles/articles.module");
 let AppModule = class AppModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+AppModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule, articles_module_1.ArticlesModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);
+exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

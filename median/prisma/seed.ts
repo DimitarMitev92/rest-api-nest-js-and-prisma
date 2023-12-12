@@ -1,8 +1,6 @@
-// prisma/seed.ts
-
 import { PrismaClient } from '@prisma/client';
 
-// initialize Prisma Client
+// initialize the Prisma Client
 const prisma = new PrismaClient();
 
 async function main() {
@@ -41,6 +39,6 @@ main()
     process.exit(1);
   })
   .finally(async () => {
-    // close Prisma Client at the end
+    // close the Prisma Client at the end
     await prisma.$disconnect();
   });

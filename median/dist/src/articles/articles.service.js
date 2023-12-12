@@ -20,7 +20,7 @@ let ArticlesService = class ArticlesService {
         return this.prisma.article.create({ data: createArticleDto });
     }
     findDrafts() {
-        return this.prisma.article.findMany({ where: { published: true } });
+        return this.prisma.article.findMany({ where: { published: false } });
     }
     findAll() {
         return this.prisma.article.findMany({ where: { published: true } });
@@ -38,9 +38,9 @@ let ArticlesService = class ArticlesService {
         return this.prisma.article.delete({ where: { id } });
     }
 };
-exports.ArticlesService = ArticlesService;
-exports.ArticlesService = ArticlesService = __decorate([
+ArticlesService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], ArticlesService);
+exports.ArticlesService = ArticlesService;
 //# sourceMappingURL=articles.service.js.map

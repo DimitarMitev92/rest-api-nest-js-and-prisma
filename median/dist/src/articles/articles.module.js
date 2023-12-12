@@ -13,12 +13,12 @@ const articles_controller_1 = require("./articles.controller");
 const prisma_module_1 = require("../prisma/prisma.module");
 let ArticlesModule = class ArticlesModule {
 };
-exports.ArticlesModule = ArticlesModule;
-exports.ArticlesModule = ArticlesModule = __decorate([
+ArticlesModule = __decorate([
     (0, common_1.Module)({
         controllers: [articles_controller_1.ArticlesController],
         providers: [articles_service_1.ArticlesService],
         imports: [prisma_module_1.PrismaModule],
     })
 ], ArticlesModule);
+exports.ArticlesModule = ArticlesModule;
 //# sourceMappingURL=articles.module.js.map

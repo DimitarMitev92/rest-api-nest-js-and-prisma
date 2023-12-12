@@ -13,7 +13,6 @@ exports.ArticleEntity = void 0;
 const swagger_1 = require("@nestjs/swagger");
 class ArticleEntity {
 }
-exports.ArticleEntity = ArticleEntity;
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", Number)
@@ -42,4 +41,5 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", Date)
 ], ArticleEntity.prototype, "updatedAt", void 0);
+exports.ArticleEntity = ArticleEntity;
 //# sourceMappingURL=article.entity.js.map
