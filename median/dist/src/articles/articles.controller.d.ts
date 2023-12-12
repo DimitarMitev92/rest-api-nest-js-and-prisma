@@ -7,7 +7,7 @@ export declare class ArticlesController {
     create(createArticleDto: CreateArticleDto): import(".prisma/client").Prisma.Prisma__ArticleClient<import(".prisma/client").Article, never>;
     findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Article[]>;
     findDrafts(): import(".prisma/client").PrismaPromise<import(".prisma/client").Article[]>;
-    findOne(id: number): import(".prisma/client").Prisma.Prisma__ArticleClient<import(".prisma/client").Article, never>;
+    findOne(id: number): Promise<import(".prisma/client").Article>;
     update(id: number, updateArticleDto: UpdateArticleDto): import(".prisma/client").Prisma.Prisma__ArticleClient<import(".prisma/client").Article, never>;
     remove(id: number): import(".prisma/client").Prisma.Prisma__ArticleClient<import(".prisma/client").Article, never>;
 }

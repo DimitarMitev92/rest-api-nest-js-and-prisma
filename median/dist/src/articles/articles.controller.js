@@ -32,8 +32,12 @@ let ArticlesController = class ArticlesController {
     findDrafts() {
         return this.articlesService.findDrafts();
     }
-    findOne(id) {
-        return this.articlesService.findOne(id);
+    async findOne(id) {
+        const article = await this.articlesService.findOne(id);
+        if (!article) {
+            throw new common_1.NotFoundException(`Article with ${id} does not exist.`);
+        }
+        return article;
     }
     update(id, updateArticleDto) {
         return this.articlesService.update(id, updateArticleDto);
@@ -70,7 +74,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
