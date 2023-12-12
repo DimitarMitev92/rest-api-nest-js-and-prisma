@@ -8,6 +8,7 @@ const prisma_client_exception_filter_1 = require("./prisma-client-exception.filt
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true }));
+    app.useGlobalInterceptors(new common_1.ClassSerializerInterceptor(app.get(core_1.Reflector)));
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Median')
         .setDescription('The Median API description')

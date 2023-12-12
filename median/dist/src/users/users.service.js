@@ -9,43 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ArticlesService = void 0;
+exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let ArticlesService = class ArticlesService {
+let UsersService = class UsersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(createArticleDto) {
-        return this.prisma.article.create({ data: createArticleDto });
-    }
-    findDrafts() {
-        return this.prisma.article.findMany({ where: { published: false } });
+    create(createUserDto) {
+        return this.prisma.user.create({ data: createUserDto });
     }
     findAll() {
-        return this.prisma.article.findMany({ where: { published: true } });
+        return this.prisma.user.findMany();
     }
     findOne(id) {
-        return this.prisma.article.findUnique({
-            where: { id },
-            include: {
-                author: true,
-            },
-        });
+        return this.prisma.user.findUnique({ where: { id } });
     }
-    update(id, updateArticleDto) {
-        return this.prisma.article.update({
-            where: { id },
-            data: updateArticleDto,
-        });
+    update(id, updateUserDto) {
+        return this.prisma.user.update({ where: { id }, data: updateUserDto });
     }
     remove(id) {
-        return this.prisma.article.delete({ where: { id } });
+        return this.prisma.user.delete({ where: { id } });
     }
 };
-ArticlesService = __decorate([
+UsersService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], ArticlesService);
-exports.ArticlesService = ArticlesService;
-//# sourceMappingURL=articles.service.js.map
+], UsersService);
+exports.UsersService = UsersService;
+//# sourceMappingURL=users.service.js.map

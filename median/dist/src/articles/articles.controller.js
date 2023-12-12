@@ -23,27 +23,25 @@ let ArticlesController = class ArticlesController {
     constructor(articlesService) {
         this.articlesService = articlesService;
     }
-    create(createArticleDto) {
-        return this.articlesService.create(createArticleDto);
+    async create(createArticleDto) {
+        return new article_entity_1.ArticleEntity(await this.articlesService.create(createArticleDto));
     }
-    findAll() {
-        return this.articlesService.findAll();
+    async findAll() {
+        const articles = await this.articlesService.findAll();
+        return articles.map((article) => new article_entity_1.ArticleEntity(article));
     }
-    findDrafts() {
-        return this.articlesService.findDrafts();
+    async findDrafts() {
+        const drafts = await this.articlesService.findDrafts();
+        return drafts.map((draft) => new article_entity_1.ArticleEntity(draft));
     }
     async findOne(id) {
-        const article = await this.articlesService.findOne(id);
-        if (!article) {
-            throw new common_1.NotFoundException(`Article with ${id} does not exist.`);
-        }
-        return article;
+        return new article_entity_1.ArticleEntity(await this.articlesService.findOne(id));
     }
-    update(id, updateArticleDto) {
-        return this.articlesService.update(id, updateArticleDto);
+    async update(id, updateArticleDto) {
+        return new article_entity_1.ArticleEntity(await this.articlesService.update(id, updateArticleDto));
     }
-    remove(id) {
-        return this.articlesService.remove(id);
+    async remove(id) {
+        return new article_entity_1.ArticleEntity(await this.articlesService.remove(id));
     }
 };
 __decorate([
@@ -52,21 +50,21 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_article_dto_1.CreateArticleDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOkResponse)({ type: article_entity_1.ArticleEntity, isArray: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('drafts'),
     (0, swagger_1.ApiOkResponse)({ type: article_entity_1.ArticleEntity, isArray: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "findDrafts", null);
 __decorate([
     (0, common_1.Get)(':id'),
@@ -83,7 +81,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, update_article_dto_1.UpdateArticleDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
@@ -91,7 +89,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "remove", null);
 ArticlesController = __decorate([
     (0, common_1.Controller)('articles'),
