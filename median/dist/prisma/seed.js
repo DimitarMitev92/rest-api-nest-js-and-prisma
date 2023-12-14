@@ -1,24 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
+const bcrypt = require("bcrypt");
 const prisma = new client_1.PrismaClient();
+const roundsOfHashing = 10;
 async function main() {
+    const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
+    const passwordAlex = await bcrypt.hash('password-alex', roundsOfHashing);
     const user1 = await prisma.user.upsert({
         where: { email: 'sabin@adams.com' },
-        update: {},
+        update: {
+            password: passwordSabin,
+        },
         create: {
             email: 'sabin@adams.com',
             name: 'Sabin Adams',
-            password: 'password-sabin',
+            password: passwordSabin,
         },
     });
     const user2 = await prisma.user.upsert({
         where: { email: 'alex@ruheni.com' },
-        update: {},
+        update: {
+            password: passwordAlex,
+        },
         create: {
             email: 'alex@ruheni.com',
             name: 'Alex Ruheni',
-            password: 'password-alex',
+            password: passwordAlex,
         },
     });
     const post1 = await prisma.article.upsert({
